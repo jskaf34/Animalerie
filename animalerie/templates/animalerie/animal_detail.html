@@ -1,0 +1,56 @@
+{% extends 'animalerie/base_detail.html' %}
+{% block content %}
+<div id="intro" class="page-header">
+    <div class="animal_titre">
+        <span style="font-size:xx-large;padding-left: 50px;padding-right: 50px;">{{animal.id_animal}}</span>
+    </div>
+    <div class = "container">
+        <div class="row row-cols-2">
+            <div  class="col" style="padding-top:20px;">
+                <ul class="list-group">
+                    <li id ="tv" class="list-group-item" > <span style="font-weight: bold;"> Type </span> : {{animal.type}}</li>
+                    <li id ="tv" class="list-group-item" > <span style="font-weight: bold;"> Race </span> : {{animal.race}}</li>
+                    <li id ="tv" class="list-group-item" > <span style="font-weight: bold;"> État </span> : {{animal.etat}}</li>
+                    <li id ="tv" class="list-group-item" > <span style="font-weight: bold;"> Lieu </span> : {{animal.lieu.id_equip}}</li>
+                  </ul>
+            </div>
+            <div class="col photo_animal"  style="background-image: url({{animal.photo}});">
+            </div>
+        </div>
+    </div>
+    <div class = "container" style="margin-top: 20px;">
+    <form method="POST" class="post-form">{% csrf_token %}
+        <div class="changer" style="font-weight: bold;"> Changer </div> 
+        <div style="margin-bottom: 10px;">
+            {{ form.as_table }}
+        </div>
+        <button type="submit" class="btn btn-primary">OK</button>
+    </form>
+    <div class="back">
+        <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'base' %}'">Retour</button>
+    </div>
+    </div>
+</div>
+
+{% if error == 1 %}
+<script>
+    document.getElementById("intro").style.visibility='hidden';
+</script>
+<div class ="alert alert-danger message" role="alert">
+  <p>{{message}}</p>
+  <p><button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'base' %}'">Retour</button></p>
+</div>
+{% endif %}
+
+{% if error == 2 %}
+<script>
+    document.getElementById("intro").style.visibility='hidden';
+</script>
+<div class ="alert alert-success message" role="alert">
+    <p>{{message}}</p> 
+  <p><button type="button" class="btn btn-success" onclick="window.location.href='{% url 'base' %}'">Retour</button></p>
+</div>
+{% endif %}
+ 
+ 
+{% endblock %}

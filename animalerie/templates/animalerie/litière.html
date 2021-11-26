@@ -1,0 +1,23 @@
+{% extends 'animalerie/base_detail.html' %}
+{% block content %}
+<div style='text-align:center; margin-top: 50px;'>
+    <div class="litière">
+        <span style="font-size:xx-large;padding-left: 50px;padding-right: 50px;">Occupants.s</span>
+    </div>
+<div class = "container" style="margin-top: 50px;">
+    <div class = "row row-cols-">
+        {%for animal in animaux %}
+            {%if animal.lieu.id_equip == 'Litière' %}
+            <div class="animal_titre">
+                <a href='{% url 'animal_detail' id_animal=animal.id_animal  %}' style="font-size:xx-large;padding-left: 50px;padding-right: 50px;"> {{animal.id_animal}}</a>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div class = "back_litière">
+    <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'base' %}'">Retour</button>
+</div>
+
+ 
+{% endblock %}
